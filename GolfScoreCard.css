@@ -1,0 +1,153 @@
+html, body, div, p, h1, h2, h3, h4, h5, h6, a, i {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+/*--------------------------------------------------------------------------------------
+*  Base styling for main page
+--------------------------------------------------------------------------------------*/
+
+@font-face {
+    font-family: "angel tears";
+    src: url("Angel Tears Neue Personal use.ttf");
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    font-family: "angel tears";
+    font-size: 75px;
+}
+
+#startHeader {
+    padding-top: 20px;
+}
+
+#mainContainer {
+    height: 100%;
+    width: 100%;
+    background-image: url("golfImage.jpg");
+    background-position: center;
+
+    background-size: 300%;
+}
+
+#contentContainer {
+    width: 90%;
+    height: 95%;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 5px;
+}
+
+#topImage {
+    width: 100%;
+    height: 20%;
+    background-image: url("coolGolfImage.jpg");
+    background-position: center;
+
+    background-size: 100%;
+    border-radius: 5px 12px 0 0;
+}
+
+#innerContent {
+    height: 80%;
+    width: 100%;
+    background-color: rgba(240, 240, 240, 0.95);
+    opacity: 0.9;
+    border-radius: 0 0 5px 5px;
+}
+
+#button-to-form {
+    width: 700px;
+    margin: 0 auto;
+    border: 1px solid #996600;
+    border-radius: 5px;
+    background-color: #ffaa00;
+    position: relative;
+    top: 35%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    padding: 25px 25px;
+    font-family: "angel tears", cursive, Verdana;
+    transition: all 0.3s;
+}
+
+#button-to-form:hover {
+    cursor: pointer;
+    background-color: #ffbb33;
+}
+
+
+
+/*--------------------------------------------------------------------------------------
+*  Styling for the form
+--------------------------------------------------------------------------------------*/
+
+#overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#formPage {
+    margin: auto;
+    position: absolute;
+    width: 500px;
+    height: 700px;
+    z-index: 4;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#exitButton {
+    float: right;
+    font-size: 30px;
+    margin: 5px 5px 0 0;
+    transition: all 0.3s;
+}
+
+#exitButton:hover {
+    color: #b30000;
+    cursor: pointer;
+}
+
+#circleImage {
+    height: 150px;
+    width: 150px;
+    margin: 20px auto 40px auto;
+    border-radius: 100%;
+    background-image: url("golf-ball-on-tee.jpg");
+    background-size: 100%;
+    box-shadow: 0 0 30px #666;
+}
+
+#formHeader {
+    width: 250px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+    text-align: center;
+    font-size: 40px;
+}
+
+
+/*--------------------------------------------------------------------------------------
+*  Toggle classes
+--------------------------------------------------------------------------------------*/
+
+.hidden {
+    display: none;
+}
