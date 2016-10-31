@@ -24,9 +24,22 @@ h1 {
     font-size: 75px;
 }
 
-#startHeader {
+#header {
+    text-align: center;
     padding-top: 20px;
 }
+
+#startHeader {
+    font-family: "angel tears";
+    font-size: 75px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding: 20px 60px;
+}
+
+
+
 
 #mainContainer {
     height: 100%;
