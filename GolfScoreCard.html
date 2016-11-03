@@ -16,6 +16,28 @@
             <i class="fa fa-times" id="exitButton"></i>
             <div id="circleImage"></div>
             <h1 id="formHeader">Golf Scorecard</h1>
+            <form id="myForm">
+                <div>
+                    <label>Golf Course:</label>
+                    <select id="selectCourse" onchange="changeCourse()">
+                        <option data-id="0">-</option>
+                    </select>
+                </div>
+                <div id="teeType">
+                    <label>Tee Type:</label>
+                    <select id="selectTee">
+                        <option data-teeType="none">-</option>
+                    </select>
+                </div>
+                <div id="players">
+                    <label>Number of Players:</label>
+                    <input type="text" placeholder="Players" id="playerNumInput" onkeyup="populatePlayerInput()">
+                </div>
+                <div id="playersInput">
+                    <div id="errorBoxNumPlayers"></div>
+                </div>
+                <div id="submitButton">Submit</div>
+            </form>
         </div>
 
         <!----------------------------------------------------------------------------------------------------------->
@@ -29,8 +51,6 @@
                     <div id="header">
                         <span id="startHeader">Golf Scorecard</span>
                     </div>
-
-
                     <div id="button-to-form">Click here to create a scorecard</div>
                 </div>
             </div>
