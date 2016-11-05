@@ -1,4 +1,4 @@
-html, body, div, p, h1, h2, h3, h4, h5, h6, a, i {
+html, body, div, p, h1, h2, h3, h4, h5, h6, a, i, input, select {
     padding: 0;
     margin: 0;
     text-decoration: none;
@@ -22,6 +22,11 @@ h1 {
     text-align: center;
     font-family: "angel tears";
     font-size: 75px;
+}
+
+p {
+    font-family: Helvetica;
+    font-size: 19px;
 }
 
 #header {
@@ -155,6 +160,82 @@ h1 {
     font-size: 40px;
 }
 
+#myForm {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#labels {
+    width: 43%;
+    float: left;
+    margin-top: 2px;
+}
+
+#inputs {
+    width: auto;
+    float: left;
+}
+
+select {
+    width: 55%;
+}
+
+input {
+    width: 97%;
+    height: 15px;
+    padding: 2px;
+}
+
+label {
+    font-family: Helvetica;
+    font-size: 19px;
+}
+
+.specialinput {
+    margin: 0 auto;
+    margin-top: 13px;
+
+}
+
+.numPlayers {
+    width: 54%;
+}
+
+.inputType {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#errorBoxNumPlayers {
+    float: left;
+    color: red;
+    margin-top: 10px;
+    font-family: Helvetica;
+
+}
+
+#formSubmit {
+    width: 150px;
+    margin-top: 10px;
+    border: 1px solid #996600;
+    border-radius: 5px;
+    background-color: #ffaa00;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding: 5px 5px;
+    font-family: "angel tears", cursive, Verdana;
+    transition: all 0.3s;
+}
+
+#formSubmit:hover {
+    cursor: pointer;
+    background-color: #ffbb33;
+}
+
+
+
 
 /*--------------------------------------------------------------------------------------
 *  Toggle classes
@@ -162,4 +243,16 @@ h1 {
 
 .hidden {
     display: none;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.overflow {
+    overflow: hidden;
 }

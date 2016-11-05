@@ -17,26 +17,43 @@
             <div id="circleImage"></div>
             <h1 id="formHeader">Golf Scorecard</h1>
             <form id="myForm">
-                <div>
-                    <label>Golf Course:</label>
-                    <select id="selectCourse" onchange="changeCourse()">
+
+                <div class="inputType">
+                    <label class="inputType">Golf Course:</label>
+                    <select id="selectCourse" class="right" onchange="changeCourse()">
                         <option data-id="0">-</option>
                     </select>
                 </div>
-                <div id="teeType">
-                    <label>Tee Type:</label>
-                    <select id="selectTee">
+
+                <div class="inputType">
+                    <label class="inputType">Tee Type:</label>
+                    <select id="selectTee" class="right">
                         <option data-teeType="none">-</option>
                     </select>
                 </div>
-                <div id="players">
-                    <label>Number of Players:</label>
-                    <input type="text" placeholder="Players" id="playerNumInput" onkeyup="populatePlayerInput()">
+
+                <div id="holeType" class="inputType">
+                    <label id="labelHoles" class="inputType">Holes:</label>
+                    <select id="selectFrontBack" class="right">
+                        <option data-frontBack="none">-</option>
+                    </select>
                 </div>
+
+                <div class="inputType">
+                    <label class="inputType">Number of Players:</label>
+                    <input type="text" placeholder="Players" id="playerNumInput" class="right numPlayers" onkeyup="populatePlayerInput()">
+                </div>
+
+
                 <div id="playersInput">
-                    <div id="errorBoxNumPlayers"></div>
+
                 </div>
-                <div id="submitButton">Submit</div>
+                <div>
+                    <div id="errorBoxNumPlayers"></div>
+
+                    <div id="formSubmit" class="overflow right">Submit</div>
+                </div>
+
             </form>
         </div>
 

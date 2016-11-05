@@ -25,7 +25,7 @@ $("#exitButton").on("click", function() {
 // Populate the form and perform needed ajax requests
 //---------------------------------------------------------------------------------------
 
-var lon, lat, golfCourseOptions, currCourse;
+var lon, lat, golfCourseOptions, currCourse, numHoles, numName;
 
 var options = {
     enableHighAccuracy: true
@@ -61,30 +61,79 @@ function changeCourse() {
         for(var i = 0; i < currCourse.tee_types.length; i++) {
             $("#selectTee").append("<option data-teeType='" + currCourse.holes[0].tee_boxes[i].tee_type +"' data-index='"+ i +"'>" + currCourse.holes[0].tee_boxes[i].tee_type + "</option>");
         }
-    })
+        numHoles = currCourse.hole_count;
+            if(numHoles > 9) {
+                $("#selectFrontBack").html("");
+                $("#selectFrontBack").append("<option data-frontBack='front'>Front 9</option><option data-frontBack='back'>Back 9</option><option data-frontBack='all'>All 18</option>");
+            } else {
+                $("#selectFrontBack").html("");
+                $("#selectFrontBack").append("<option data-frontBack='front'>9 Holes</option>");
+            }
+
+    });
 }
 
 function populatePlayerInput() {
-    var numName = $("#playerNumInput").val();
+    numName = $("#playerNumInput").val();
     numName = parseInt(numName);
     if(!(isNaN(numName))) {
         if(numName < 7) {
             if(numName > 0) {
-                $("#playersInput").html("<div id='errorBoxNumPlayers'></div>");
+                $("#playersInput").html("");
+                $("#errorBoxNumPlayers").html("");
                 for(var i = 0; i < numName; i++) {
-                    $("#playersInput").append("<div><label>Player " + (i + 1) + ":</label><input type='text' placeholder='Name' id='playerInput" + i + "'></div>");
+                    $("#playersInput").append("<div><input class='specialinput overflow' type='text' placeholder='Player"+ (i + 1) +"' id='playerInput" + i + "'></div>");
                 }
             } else {
-                $("#playersInput").html("<div id='errorBoxNumPlayers'></div>");
+                $("#playersInput").html("");
+                $("#errorBoxNumPlayers").html("");
                 $("#errorBoxNumPlayers").html("<p>Minimum player limit reached: 1</p>");
             }
         } else {
-            $("#playersInput").html("<div id='errorBoxNumPlayers'></div>");
+            $("#playersInput").html("");
+            $("#errorBoxNumPlayers").html("");
             $("#errorBoxNumPlayers").html("<p>Maximum player limit reached: 6</p>");
         }
     } else {
-        $("#playersInput").html("<div id='errorBoxNumPlayers'></div>");
+        $("#playersInput").html("");
+        $("#errorBoxNumPlayers").html("");
         $("#errorBoxNumPlayers").html("<p>Please enter a number.</p>");
     }
 }
 
+if($("#playerNumInput").val() != "") {
+    populatePlayerInput();
+}
+
+//---------------------------------------------------------------------------------------
+// Form Validation
+//---------------------------------------------------------------------------------------
+
+$("#formSubmit").on("click", function() {
+    var same = 0;
+    $("#errorBoxNumPlayers").html("");
+    if($("#selectCourse").find(":selected").data("id") != "0") {
+        if($("#playerNumInput").val() < 7 && $("#playerNumInput").val() > 0) {
+            for(var i = 0; i < numName; i++) {
+                for(var j = i + 1; j < numName; j++) {
+                    if($("#playerInput" + i).val() == $("#playerInput" + j).val()) {
+                        same++;
+                    }
+                }
+            }
+            if(same == 0) {
+                createScorecard();
+            } else {
+                $("#errorBoxNumPlayers").html("*No two names can be the same");
+            }
+        } else {
+            $("#errorBoxNumPlayers").html("*Please enter number of players");
+        }
+    } else {
+        $("#errorBoxNumPlayers").html("*Please select a course");
+    }
+});
+
+//---------------------------------------------------------------------------------------
+// Create the scorecard
+//---------------------------------------------------------------------------------------
