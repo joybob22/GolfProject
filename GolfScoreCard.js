@@ -25,7 +25,7 @@ $("#exitButton").on("click", function() {
 // Populate the form and perform needed ajax requests
 //---------------------------------------------------------------------------------------
 
-var lon, lat, golfCourseOptions, currCourse, numHoles, numName;
+var lon, lat, golfCourseOptions, currCourse, numHoles, numName, numPlayers;
 
 var options = {
     enableHighAccuracy: true
@@ -69,7 +69,6 @@ function changeCourse() {
                 $("#selectFrontBack").html("");
                 $("#selectFrontBack").append("<option data-frontBack='front'>9 Holes</option>");
             }
-
     });
 }
 
@@ -137,3 +136,27 @@ $("#formSubmit").on("click", function() {
 //---------------------------------------------------------------------------------------
 // Create the scorecard
 //---------------------------------------------------------------------------------------
+
+function createScorecard() {
+    var whatHole = $("#selectFrontBack").find(":selected").data("frontback");
+    $("#scorecard").removeClass("hidden");
+    $("#theCard").removeClass("hidden");
+    $("#overlay").addClass("hidden");
+    $("#formPage").css("display", "none");
+    $("#button-to-form").remove();
+    $("#startHeader").html(currCourse.name);
+    for(var i = 0; i < numName; i++) {
+        $("#playerNames").append("<h3 id='player" + i  +"name'>" + $('#playerInput' + i).val() + "</h3>");
+    }
+
+    if(whatHole == "all") {
+        for(var i = 0; i < (numName + 4); i++){ //hole yards par handicap
+            $("#scorecard").append("<div id='row" + i + "' class='row'></div>");
+            for(var j = (numHoles + 2); j >= 0; j--) {
+                $("#row" + i).append("<div id='row" + i + "column" + j +"' class='card row" + i + "'></div>");
+            }
+        }
+    } else {
+
+    }
+}

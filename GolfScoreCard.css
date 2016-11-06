@@ -256,3 +256,62 @@ label {
 .overflow {
     overflow: hidden;
 }
+
+
+
+/*--------------------------------------------------------------------------------------
+*  Scorecard Styling
+--------------------------------------------------------------------------------------*/
+
+#theCard {
+    height: 80%;
+    width: 100%;
+    margin-top: 50px;
+}
+
+#scorecard {
+    height: 80%;
+    margin: 0 auto;
+    float: right;
+    width: 80%;
+}
+
+#space {
+    width: 40px;
+    height: 100%;
+    float: right;
+}
+
+#playerNames {
+    float: left;
+    margin: 7px 0 0 40px;
+    font-family: "angel tears";
+    font-size: 28px;
+}
+
+.row4, .row5, .row6, .row7, .row8, .row9 {
+    background-color: #ffdd99;
+}
+
+#row4 {
+    margin-top: 25px;
+}
+
+#player0name {
+    margin-top: 9px;
+}
+
+.row {
+    width: 100%;
+    height: 30px;
+    margin-top: 2px;
+}
+
+.card {
+    float: right;
+    width: 4%;
+    height: 100%;
+    border: 1px solid #AAA;
+    border-collapse: collapse;
+    margin-right: 1px;
+}
