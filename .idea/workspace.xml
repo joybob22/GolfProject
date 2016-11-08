@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f99ec768-41f4-4404-ab2a-bdc862a59ca8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GolfScoreCard.css" afterPath="$PROJECT_DIR$/GolfScoreCard.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GolfScoreCard.html" afterPath="$PROJECT_DIR$/GolfScoreCard.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GolfScoreCard.js" afterPath="$PROJECT_DIR$/GolfScoreCard.js" />
     </list>
     <ignored path="GolfProject.iws" />
@@ -30,28 +30,28 @@
       <file leaf-file-name="GolfScoreCard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GolfScoreCard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="72" column="51" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
+            <state relative-caret-position="405">
+              <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GolfScoreCard.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GolfScoreCard.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GolfScoreCard.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="269" column="1" selection-start-line="269" selection-start-column="1" selection-end-line="269" selection-end-column="1" />
+            <state relative-caret-position="499">
+              <caret line="263" column="26" selection-start-line="263" selection-start-column="26" selection-end-line="263" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GolfScoreCard.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GolfScoreCard.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GolfScoreCard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="155" column="99" selection-start-line="155" selection-start-column="99" selection-end-line="155" selection-end-column="99" />
+            <state relative-caret-position="1813">
+              <caret line="181" column="27" selection-start-line="181" selection-start-column="27" selection-end-line="181" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -79,8 +79,8 @@
         <option value="$PROJECT_DIR$/spec/scoring.spec.js" />
         <option value="$PROJECT_DIR$/src/scoring.js" />
         <option value="$PROJECT_DIR$/GolfScoreCard.html" />
-        <option value="$PROJECT_DIR$/GolfScoreCard.js" />
         <option value="$PROJECT_DIR$/GolfScoreCard.css" />
+        <option value="$PROJECT_DIR$/GolfScoreCard.js" />
       </list>
     </option>
   </component>
@@ -250,14 +250,18 @@
       <workItem from="1478269186666" duration="37000" />
       <workItem from="1478274948974" duration="1867000" />
       <workItem from="1478363147914" duration="18917000" />
+      <workItem from="1478410160622" duration="84000" />
+      <workItem from="1478528681527" duration="749000" />
+      <workItem from="1478532645432" duration="190000" />
+      <workItem from="1478535248317" duration="3111000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52536000" />
+    <option name="totallyTimeSpent" value="56670000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1920" height="984" extended-state="0" />
+    <frame x="0" y="22" width="1920" height="984" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16113745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -656,24 +660,24 @@
     <entry file="file://$PROJECT_DIR$/src/scoring.js" />
     <entry file="file://$PROJECT_DIR$/GolfScoreCard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="72" column="51" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GolfScoreCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="155" column="99" selection-start-line="155" selection-start-column="99" selection-end-line="155" selection-end-column="99" />
+        <state relative-caret-position="405">
+          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GolfScoreCard.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="269" column="1" selection-start-line="269" selection-start-column="1" selection-end-line="269" selection-end-column="1" />
+        <state relative-caret-position="499">
+          <caret line="263" column="26" selection-start-line="263" selection-start-column="26" selection-end-line="263" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GolfScoreCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1813">
+          <caret line="181" column="27" selection-start-line="181" selection-start-column="27" selection-end-line="181" selection-end-column="27" />
           <folding />
         </state>
       </provider>

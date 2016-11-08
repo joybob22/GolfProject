@@ -139,6 +139,7 @@ $("#formSubmit").on("click", function() {
 
 function createScorecard() {
     var whatHole = $("#selectFrontBack").find(":selected").data("frontback");
+    var teetype = $("#selectTee").find(":selected").data("index");
     $("#scorecard").removeClass("hidden");
     $("#theCard").removeClass("hidden");
     $("#overlay").addClass("hidden");
@@ -156,7 +157,61 @@ function createScorecard() {
                 $("#row" + i).append("<div id='row" + i + "column" + j +"' class='card row" + i + "'></div>");
             }
         }
+        for(var i = 0, hole = 1; i < (numHoles + 3); i++) {
+            if(i == 9) {
+                $("#row0column" + i).append("<p>OUT</p>");
+            }
+            else if(i == 19) {
+                $("#row0column" + i).append("<p>IN</p>");
+            }
+            else if(i == 20) {
+                $("#row0column" + i).append("<p>Total</p>");
+            } else {
+                $("#row0column" + i).append("<p>" + hole + "</p>");
+                hole++;
+            }
+        }
+        for(var i = 0, hole = 0; i < (numHoles + 3); i++) {
+            if(i != 9 && i < 19) {
+                $("#row1column" + i).append("<p class='yards'>" + currCourse.holes[hole].tee_boxes[teetype].yards + "</p>");
+                hole++;
+            }
+            else if(i == 9) {
+                $("#row1column" + i).append("<p class='yards'>" + calculateOutYards(teetype) + "</p>");
+            }
+            else if(i == 19) {
+                $("#row1column" + i).append("<p class='yards'>" + calculateInYards(teetype) + "</p>");
+            } else {
+                $("#row1column" + i).append("<p class='yards'>" + calculateTotalYards(teetype) + "</p>");
+            }
+        }
     } else {
 
     }
 }
+
+function calculateOutYards(teetype) {
+    var yards = 0;
+    for(var i = 0; i < 9; i++) {
+        yards += currCourse.holes[i].tee_boxes[teetype].yards;
+    }
+    return yards;
+}
+
+function calculateInYards(teetype) {
+    var yards = 0;
+    for(var i = 9; i < 18; i++) {
+        yards += currCourse.holes[i].tee_boxes[teetype].yards;
+    }
+    return yards;
+}
+
+function calculateTotalYards(teetype) {
+    var yards = 0;
+    for(var i = 0; i < 18; i++) {
+        yards += currCourse.holes[i].tee_boxes[teetype].yards;
+    }
+    return yards;
+}
+
+//<input type='text' id='inputrow" + i + "column" + j + "'>

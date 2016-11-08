@@ -27,6 +27,9 @@ h1 {
 p {
     font-family: Helvetica;
     font-size: 19px;
+    text-align: center;
+    margin-top: 3px;
+    text-decoration: underline;
 }
 
 #header {
@@ -255,6 +258,10 @@ label {
 
 .overflow {
     overflow: hidden;
+}
+
+.yards {
+    text-decoration: none;
 }
 
 
