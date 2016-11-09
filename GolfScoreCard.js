@@ -157,6 +157,7 @@ function createScorecard() {
                 $("#row" + i).append("<div id='row" + i + "column" + j +"' class='card row" + i + "'></div>");
             }
         }
+        //put in the holes
         for(var i = 0, hole = 1; i < (numHoles + 3); i++) {
             if(i == 9) {
                 $("#row0column" + i).append("<p>OUT</p>");
@@ -171,19 +172,37 @@ function createScorecard() {
                 hole++;
             }
         }
+        //put in the yards, handicap, and par
         for(var i = 0, hole = 0; i < (numHoles + 3); i++) {
             if(i != 9 && i < 19) {
                 $("#row1column" + i).append("<p class='yards'>" + currCourse.holes[hole].tee_boxes[teetype].yards + "</p>");
+                $("#row2column" + i).append("<p class='par'>" + currCourse.holes[hole].tee_boxes[teetype].par + "</p>");
+                $("#row3column" + i).append("<p class='handicap'>" + currCourse.holes[hole].tee_boxes[teetype].hcp + "</p>");
                 hole++;
             }
             else if(i == 9) {
                 $("#row1column" + i).append("<p class='yards'>" + calculateOutYards(teetype) + "</p>");
+                $("#row2column" + i).append("<p class='par'>" + calculateOutPar(teetype) + "</p>");
             }
             else if(i == 19) {
                 $("#row1column" + i).append("<p class='yards'>" + calculateInYards(teetype) + "</p>");
+                $("#row2column" + i).append("<p class='par'>" + calculateInPar(teetype) + "</p>");
             } else {
                 $("#row1column" + i).append("<p class='yards'>" + calculateTotalYards(teetype) + "</p>");
+                $("#row2column" + i).append("<p class='par'>" + calculateTotalPar(teetype) + "</p>");
             }
+        }
+        //add the inputs to the player boxes
+        for(var i = 0, row = 4; i < numName; i++) {
+            for(var j = 0, hole = 0; j < (numHoles + 3); j++) {
+                $("#row" + row + "column" + j).addClass("column" + j);
+                if(j != 9 && j < 19) {
+                    $("#row" + row + "column" + j).append("<input id='player"+ i +"column"+ j +"' class='scoreInput' type='text'>");
+                    hole++;
+                }
+
+            }
+            row++;
         }
     } else {
 
@@ -212,6 +231,30 @@ function calculateTotalYards(teetype) {
         yards += currCourse.holes[i].tee_boxes[teetype].yards;
     }
     return yards;
+}
+
+function calculateOutPar(teetype) {
+    var par = 0;
+    for(var i = 0; i < 9; i++) {
+        par += currCourse.holes[i].tee_boxes[teetype].par;
+    }
+    return par;
+}
+
+function calculateInPar(teetype) {
+    var par = 0;
+    for(var i = 9; i < 18; i++) {
+        par += currCourse.holes[i].tee_boxes[teetype].par;
+    }
+    return par;
+}
+
+function calculateTotalPar(teetype) {
+    var par = 0;
+    for(var i = 0; i < 18; i++) {
+        par += currCourse.holes[i].tee_boxes[teetype].par;
+    }
+    return par;
 }
 
 //<input type='text' id='inputrow" + i + "column" + j + "'>
