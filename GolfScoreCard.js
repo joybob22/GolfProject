@@ -38,7 +38,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         latitude: lat,
         longitude: lon
     };
-    $.post("http://golf-courses-api.herokuapp.com/courses", userPosition, function(data) {
+    $.post("https://golf-courses-api.herokuapp.com/courses", userPosition, function(data) {
         golfCourseOptions = JSON.parse(data);
         golfCourseOptions = golfCourseOptions.courses;
         for(var i = 0; i < golfCourseOptions.length; i++) {
@@ -54,7 +54,7 @@ function error(error) {
 
 function changeCourse() {
     var courseid = $("#selectCourse").find(":selected").data("id");
-    $.get("http://golf-courses-api.herokuapp.com/courses/" + courseid, function(data) {
+    $.get("https://golf-courses-api.herokuapp.com/courses/" + courseid, function(data) {
         currCourse = JSON.parse(data);
         currCourse = currCourse.course;
         $("#selectTee").html("");
@@ -220,7 +220,7 @@ function createScorecard() {
         for(var i = 0; i < (numName + 4); i++){ //hole yards par handicap
             $("#scorecard").append("<div id='row" + i + "' class='row'></div>");
             for(var j = numHoles; j >= 0; j--) {
-                $("#row" + i).append("<div id='row" + i + "column" + j +"' class='card row" + i + "'></div>");
+                $("#row" + i).append("<div id='row" + i + "column" + j +"' class='card row" + i + " shortHoles'></div>");
             }
         }
 
@@ -272,7 +272,7 @@ function createScorecard() {
         for(var i = 0; i < (numName + 4); i++){ //hole yards par handicap
             $("#scorecard").append("<div id='row" + i + "' class='row'></div>");
             for(var j = numHoles; j >= 0; j--) {
-                $("#row" + i).append("<div id='row" + i + "column" + j +"' class='card row" + i + "'></div>");
+                $("#row" + i).append("<div id='row" + i + "column" + j +"' class='card row" + i + " shortHoles'></div>");
             }
         }
 
