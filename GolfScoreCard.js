@@ -209,16 +209,121 @@ function createScorecard() {
                         $("#row" + row + "column" + j).append("<input id='player"+ i +"column"+ j +"' class='scoreInput odd' type='text' onkeyup='checkValidation(this.value, this.id)'>");
                         hole++;
                     }
+                }
 
+            }
+            row++;
+        }
+    }
+    else if(whatHole == "front") {
+        numHoles = 9;
+        for(var i = 0; i < (numName + 4); i++){ //hole yards par handicap
+            $("#scorecard").append("<div id='row" + i + "' class='row'></div>");
+            for(var j = numHoles; j >= 0; j--) {
+                $("#row" + i).append("<div id='row" + i + "column" + j +"' class='card row" + i + "'></div>");
+            }
+        }
+
+        for(var i = 0, hole = 1; i < (numHoles + 1); i++) {
+            if(i == 9) {
+                $("#row0column" + i).append("<p>OUT</p>");
+            } else {
+                $("#row0column" + i).append("<p>" + hole + "</p>");
+                hole++;
+            }
+        }
+
+        for(var i = 0, hole = 0; i < (numHoles + 1); i++) {
+            if(i != 9) {
+                $("#row1column" + i).append("<p class='yards'>" + currCourse.holes[hole].tee_boxes[teetype].yards + "</p>");
+                $("#row2column" + i).append("<p class='par'>" + currCourse.holes[hole].tee_boxes[teetype].par + "</p>");
+                $("#row3column" + i).append("<p class='handicap'>" + currCourse.holes[hole].tee_boxes[teetype].hcp + "</p>");
+                hole++;
+            } else {
+                $("#row1column" + i).append("<p class='yards'>" + calculateOutYards(teetype) + "</p>");
+                $("#row2column" + i).append("<p class='par'>" + calculateOutPar(teetype) + "</p>");
+            }
+        }
+
+        for(var i = 0, row = 4; i < numName; i++) {
+            for(var j = 0, hole = 0; j < (numHoles + 1); j++) {
+                if(i % 2 == 0) {
+                    $("#row" + row + "column" + j).addClass("column" + j + "even");
+                } else {
+                    $("#row" + row + "column" + j).addClass("column" + j + "odd");
+                }
+
+                if(j != 9) {
+                    if(i % 2 == 0) {
+                        $("#row" + row + "column" + j).append("<input id='player"+ i +"column"+ j +"' class='scoreInput even' type='text' onkeyup='checkValidation(this.value, this.id)'>");
+                        hole++;
+                    } else {
+                        $("#row" + row + "column" + j).append("<input id='player"+ i +"column"+ j +"' class='scoreInput odd' type='text' onkeyup='checkValidation(this.value, this.id)'>");
+                        hole++;
+                    }
                 }
 
             }
             row++;
         }
     } else {
+        //if whatHole is "back"
+        numHoles = 9;
+        for(var i = 0; i < (numName + 4); i++){ //hole yards par handicap
+            $("#scorecard").append("<div id='row" + i + "' class='row'></div>");
+            for(var j = numHoles; j >= 0; j--) {
+                $("#row" + i).append("<div id='row" + i + "column" + j +"' class='card row" + i + "'></div>");
+            }
+        }
 
+        for(var i = 0, hole = 10; i < (numHoles + 1); i++) {
+            if(i == 9) {
+                $("#row0column" + i).append("<p>IN</p>");
+            } else {
+                $("#row0column" + i).append("<p>" + hole + "</p>");
+                hole++;
+            }
+        }
+
+        for(var i = 0, hole = 9; i < (numHoles + 1); i++) {
+            if(i != 9) {
+                $("#row1column" + i).append("<p class='yards'>" + currCourse.holes[hole].tee_boxes[teetype].yards + "</p>");
+                $("#row2column" + i).append("<p class='par'>" + currCourse.holes[hole].tee_boxes[teetype].par + "</p>");
+                $("#row3column" + i).append("<p class='handicap'>" + currCourse.holes[hole].tee_boxes[teetype].hcp + "</p>");
+                hole++;
+            } else {
+                $("#row1column" + i).append("<p class='yards'>" + calculateOutYards(teetype) + "</p>");
+                $("#row2column" + i).append("<p class='par'>" + calculateOutPar(teetype) + "</p>");
+            }
+        }
+
+        for(var i = 0, row = 4; i < numName; i++) {
+            for(var j = 0, hole = 0; j < (numHoles + 1); j++) {
+                if(i % 2 == 0) {
+                    $("#row" + row + "column" + j).addClass("column" + j + "even");
+                } else {
+                    $("#row" + row + "column" + j).addClass("column" + j + "odd");
+                }
+
+                if(j != 9) {
+                    if(i % 2 == 0) {
+                        $("#row" + row + "column" + j).append("<input id='player"+ i +"column"+ j +"' class='scoreInput even' type='text' onkeyup='checkValidation(this.value, this.id)'>");
+                        hole++;
+                    } else {
+                        $("#row" + row + "column" + j).append("<input id='player"+ i +"column"+ j +"' class='scoreInput odd' type='text' onkeyup='checkValidation(this.value, this.id)'>");
+                        hole++;
+                    }
+                }
+
+            }
+            row++;
+        }
     }
 }
+
+//---------------------------------------------------------------------------------------
+// Lots of functions...
+//---------------------------------------------------------------------------------------
 
 function calculateOutYards(teetype) {
     var yards = 0;
@@ -305,7 +410,7 @@ function checkValidation(userInput, userId) {
                     total += playerValue;
                 }
             }
-            $("#row" + (i + 4) + "column9").html(total);
+            $("#row" + (i + 4) + "column9").html("<p class='calculatedScore'>" + total + "</p>");
         }
     }
 
@@ -321,7 +426,7 @@ function checkValidation(userInput, userId) {
                     total += playerValue;
                 }
             }
-            $("#row" + (i + 4) + "column19").html(total);
+            $("#row" + (i + 4) + "column19").html("<p class='calculatedScore'>" + total + "</p>");
         }
     }
 
@@ -339,7 +444,7 @@ function checkValidation(userInput, userId) {
                     }
                 }
             }
-            $("#row" + (i + 4) + "column20").html(total);
+            $("#row" + (i + 4) + "column20").html("<p class='calculatedScore'>" + total + "</p>");
         }
     }
 }

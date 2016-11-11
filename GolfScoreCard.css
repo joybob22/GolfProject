@@ -322,6 +322,7 @@ label {
     border-collapse: collapse;
     margin-right: 1px;
     overflow: hidden;
+    text-align: center;
 }
 
 .scoreInput {
@@ -347,6 +348,11 @@ label {
 
 .column9odd, .column19odd, .column20odd {
     background-color: #ffc34d;
+}
+
+.calculatedScore {
+    margin-top: 3px;
+    text-decoration: none;
 }
 
 #theErrors {
