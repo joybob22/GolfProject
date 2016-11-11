@@ -195,10 +195,21 @@ function createScorecard() {
         //add the inputs to the player boxes
         for(var i = 0, row = 4; i < numName; i++) {
             for(var j = 0, hole = 0; j < (numHoles + 3); j++) {
-                $("#row" + row + "column" + j).addClass("column" + j);
+                if(i % 2 == 0) {
+                    $("#row" + row + "column" + j).addClass("column" + j + "even");
+                } else {
+                    $("#row" + row + "column" + j).addClass("column" + j + "odd");
+                }
+
                 if(j != 9 && j < 19) {
-                    $("#row" + row + "column" + j).append("<input id='player"+ i +"column"+ j +"' class='scoreInput' type='text'>");
-                    hole++;
+                    if(i % 2 == 0) {
+                        $("#row" + row + "column" + j).append("<input id='player"+ i +"column"+ j +"' class='scoreInput even' type='text' onkeyup='checkValidation(this.value, this.id)'>");
+                        hole++;
+                    } else {
+                        $("#row" + row + "column" + j).append("<input id='player"+ i +"column"+ j +"' class='scoreInput odd' type='text' onkeyup='checkValidation(this.value, this.id)'>");
+                        hole++;
+                    }
+
                 }
 
             }
@@ -255,6 +266,82 @@ function calculateTotalPar(teetype) {
         par += currCourse.holes[i].tee_boxes[teetype].par;
     }
     return par;
+}
+
+function checkValidation(userInput, userId) {
+    if(userInput == "") {
+        $("#theErrors").html("");
+        calculateOutScore();
+        calculateInScore();
+        calculateTotalScore();
+        return true;
+    }
+    userInput = parseInt(userInput);
+    if(!(isNaN(userInput))) {
+        if(userInput > 0 && userInput < 100) {
+            $("#theErrors").html("");
+            calculateOutScore();
+            calculateInScore();
+            calculateTotalScore();
+        } else {
+            $("#" + userId).val("");
+            $("#theErrors").html("<h2>Number must be from 1-99</h2>");
+        }
+    } else {
+        $("#" + userId).val("");
+        $("#theErrors").html("<h2>Please enter a number</h2>");
+    }
+
+    function calculateOutScore() {
+        var total = 0;
+        var playerValue;
+
+        for(var i = 0; i < numName; i++) {
+            total = 0;
+            for(var j = 0; j < 9; j++) {
+                playerValue = $("#player" + i + "column" + j).val();
+                playerValue = parseInt(playerValue);
+                if(!(isNaN(playerValue))) {
+                    total += playerValue;
+                }
+            }
+            $("#row" + (i + 4) + "column9").html(total);
+        }
+    }
+
+    function calculateInScore() {
+        var total = 0;
+        var playerValue;
+        for(var i = 0; i < numName; i++) {
+            total = 0;
+            for(var j = 10; j < 19; j++) {
+                playerValue = $("#player" + i + "column" + j).val();
+                playerValue = parseInt(playerValue);
+                if(!(isNaN(playerValue))) {
+                    total += playerValue;
+                }
+            }
+            $("#row" + (i + 4) + "column19").html(total);
+        }
+    }
+
+    function calculateTotalScore() {
+        var total = 0;
+        var playerValue;
+        for(var i = 0; i < numName; i++) {
+            total = 0;
+            for(var j = 0; j < 19; j++) {
+                if(j != 9) {
+                    playerValue = $("#player" + i + "column" + j).val();
+                    playerValue = parseInt(playerValue);
+                    if(!(isNaN(playerValue))) {
+                        total += playerValue;
+                    }
+                }
+            }
+            $("#row" + (i + 4) + "column20").html(total);
+        }
+    }
 }
 
 //<input type='text' id='inputrow" + i + "column" + j + "'>
