@@ -25,7 +25,7 @@ $("#exitButton").on("click", function() {
 // Populate the form and perform needed ajax requests
 //---------------------------------------------------------------------------------------
 
-var lon, lat, golfCourseOptions, currCourse, numHoles, numName, numPlayers;
+var lon, lat, golfCourseOptions, currCourse, numHoles, numName, totalPar, inPar, outPar, whatHole;
 
 var options = {
     enableHighAccuracy: true
@@ -138,7 +138,7 @@ $("#formSubmit").on("click", function() {
 //---------------------------------------------------------------------------------------
 
 function createScorecard() {
-    var whatHole = $("#selectFrontBack").find(":selected").data("frontback");
+    whatHole = $("#selectFrontBack").find(":selected").data("frontback");
     var teetype = $("#selectTee").find(":selected").data("index");
     $("#scorecard").removeClass("hidden");
     $("#theCard").removeClass("hidden");
@@ -146,6 +146,9 @@ function createScorecard() {
     $("#formPage").css("display", "none");
     $("#button-to-form").remove();
     $("#startHeader").html(currCourse.name);
+    $("#parButton").on("click", function() {
+        calculatePlayersPar();
+    });
     for(var i = 0; i < numName; i++) {
         $("#playerNames").append("<h3 id='player" + i  +"name'>" + $('#playerInput' + i).val() + "</h3>");
     }
@@ -325,6 +328,65 @@ function createScorecard() {
 // Lots of functions...
 //---------------------------------------------------------------------------------------
 
+function calculatePlayersPar() {
+
+    var pars = [];
+    var par;
+    if(whatHole == "all") {
+        par = totalPar;
+        for(var i = 0; i < numName; i++) {
+            pars[i] = $("#player" + i + "score").data("score") - par;
+        }
+    }
+    else if(whatHole == "front") {
+        par = outPar;
+        for(var i = 0; i < numName; i++) {
+            pars[i] = $("#player" + i + "Outscore").data("score") - par;
+        }
+    } else {
+        par = outPar;
+        for(var i = 0; i < numName; i++) {
+            pars[i] = $("#player" + i + "Outscore").data("score") - par;
+        }
+    }
+
+
+    if(!(isNaN(pars[0]))) {
+        $("#overlay").removeClass("hidden");
+        $("#myForm").addClass("hidden");
+        $("#formPage").slideDown();
+        $("#formPage").append("<div id='playerPars'></div>");
+        $("#playerPars").html("");
+
+        for(var i = 0; i < numName; i++) {
+            $("#playerPars").append("<div id='player" + i + "par' class='parRow'></div>");
+            $("#player" + i + "par").append("<span class='parName'>" + $('#playerInput' + i).val() + "'s par: </span><span class='thePar'>" + pars[i] + "</span><p class='parMessage'>" + parMessage(pars, i) + "</p>");
+        }
+    }
+}
+
+function parMessage(array, index) {
+    if((whatHole == "all" && array[index] < (-1 * (totalPar - 18))) || ((whatHole == "front" || whatHole == "back") && array[index] < (-1 * (outPar - 9)))) {
+        return "You didn't even play all the holes you cheater!";
+    }
+
+    if((whatHole == "all" && array[index] == (-1 * (totalPar - 18))) || ((whatHole == "front" || whatHole == "back") && array[index] == (-1 * (outPar - 9)))) {
+        return "All hole in ones! Either your the biggest liar who ever lived or the best golfer that has ever set foot on this earth!";
+    }
+
+    if(array[index] < 0) {
+        return "That's impressive! Your certainly PGA worthy."
+    }
+
+    if(array[index] == 0) {
+        return "Right on par! All in a good days work."
+    }
+
+    if(array[index] > 0) {
+        return "Keep on practicing, one day you will reach par. I believe!";
+    }
+}
+
 function calculateOutYards(teetype) {
     var yards = 0;
     for(var i = 0; i < 9; i++) {
@@ -354,6 +416,7 @@ function calculateOutPar(teetype) {
     for(var i = 0; i < 9; i++) {
         par += currCourse.holes[i].tee_boxes[teetype].par;
     }
+    outPar = par;
     return par;
 }
 
@@ -362,6 +425,7 @@ function calculateInPar(teetype) {
     for(var i = 9; i < 18; i++) {
         par += currCourse.holes[i].tee_boxes[teetype].par;
     }
+    inPar = par;
     return par;
 }
 
@@ -370,6 +434,7 @@ function calculateTotalPar(teetype) {
     for(var i = 0; i < 18; i++) {
         par += currCourse.holes[i].tee_boxes[teetype].par;
     }
+    totalPar = par;
     return par;
 }
 
@@ -410,7 +475,7 @@ function checkValidation(userInput, userId) {
                     total += playerValue;
                 }
             }
-            $("#row" + (i + 4) + "column9").html("<p class='calculatedScore'>" + total + "</p>");
+            $("#row" + (i + 4) + "column9").html("<p id='player" + i + "Outscore' class='calculatedScore' data-score='" + total + "'>" + total + "</p>");
         }
     }
 
@@ -426,7 +491,7 @@ function checkValidation(userInput, userId) {
                     total += playerValue;
                 }
             }
-            $("#row" + (i + 4) + "column19").html("<p class='calculatedScore'>" + total + "</p>");
+            $("#row" + (i + 4) + "column19").html("<p id='player" + i + "Inscore' class='calculatedScore' data-score='" + total + "'>" + total + "</p>");
         }
     }
 
@@ -444,7 +509,7 @@ function checkValidation(userInput, userId) {
                     }
                 }
             }
-            $("#row" + (i + 4) + "column20").html("<p class='calculatedScore'>" + total + "</p>");
+            $("#row" + (i + 4) + "column20").html("<p id='player" + i + "score' class='calculatedScore' data-score='" + total + "'>" + total + "</p>");
         }
     }
 }

@@ -218,7 +218,7 @@ label {
 
 }
 
-#formSubmit {
+#formSubmit, #parButton {
     width: 150px;
     margin-top: 10px;
     border: 1px solid #996600;
@@ -232,7 +232,7 @@ label {
     transition: all 0.3s;
 }
 
-#formSubmit:hover {
+#formSubmit:hover, #parButton:hover {
     cursor: pointer;
     background-color: #ffbb33;
 }
@@ -291,9 +291,27 @@ label {
 
 #playerNames {
     float: left;
-    margin: 7px 0 0 40px;
+    margin: 7px 0 270px 40px;
     font-family: "angel tears";
     font-size: 28px;
+}
+
+.row0 {
+    background-color: #000;
+    color: #fff;
+}
+
+.row1 {
+    background-color: #339966;
+}
+
+.row2 {
+    background-color: white;
+}
+
+.row3 {
+    background-color: #800000;
+    color: white;
 }
 
 .row4, .row5, .row6, .row7, .row8, .row9 {
@@ -311,16 +329,15 @@ label {
 .row {
     width: 100%;
     height: 30px;
-    margin-top: 2px;
 }
 
 .card {
     float: right;
-    width: 4%;
+    width: 4.5%;
     height: 100%;
     border: 1px solid #AAA;
     border-collapse: collapse;
-    margin-right: 1px;
+    margin-right: -1px;
     overflow: hidden;
     text-align: center;
 }
@@ -358,11 +375,38 @@ label {
 #theErrors {
     font-family: Helvetica;
     width: 400px;
+    height: 100px;
     margin: 0 auto;
     text-align: center;
     color: red;
 }
 
 .shortHoles {
-    width: 8%;
+    width: 9.2%;
+}
+
+
+/*--------------------------------------------------------------------------------------
+*  Calculated Par Page
+--------------------------------------------------------------------------------------*/
+
+.parRow {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.parName {
+    font-size: 15px;
+    font-family: Helvetica;
+}
+
+.thePar {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.parMessage {
+    font-size: 15px;
+    text-decoration: none;
+    text-align: left;
 }
